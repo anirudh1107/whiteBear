@@ -15,6 +15,7 @@ import android.widget.Toolbar;
 
 import com.example.android.whitebear.fragment.fragment1;
 import com.example.android.whitebear.fragment.fragment3;
+import com.example.android.whitebear.fragment.fragment4;
 import com.example.android.whitebear.fragment.frragment2;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,10 +63,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(item.getItemId()==R.id.bottom_contact)
             {
-
+                replace(new fragment4());
             }
-
-
 
             return true;
         }
