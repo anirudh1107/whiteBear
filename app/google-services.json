@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "645475363085",
+    "firebase_url": "https://whitebear-11eb8.firebaseio.com",
+    "project_id": "whitebear-11eb8",
+    "storage_bucket": "whitebear-11eb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645475363085:android:e287c2ffc2c7d6ee",
+        "android_client_info": {
+          "package_name": "com.example.android.whitebear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645475363085-h4u3re9bgra0g46ldi04t814em7q82ge.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.whitebear",
+            "certificate_hash": "93b7628dc50da1439d5eb6d83f485453e6d563db"
+          }
+        },
+        {
+          "client_id": "645475363085-l142ia7ni4u17mnlpefj07mue7e19d36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMT3HfGI_EeM6Z64hPfW2UaT8LUfs9pks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645475363085-l142ia7ni4u17mnlpefj07mue7e19d36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
