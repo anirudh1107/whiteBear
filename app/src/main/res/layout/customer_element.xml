@@ -64,9 +64,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="Client Name:"
                         android:textStyle="bold"
                         />
@@ -74,7 +73,6 @@
                         android:id="@+id/customer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         />
 
                 </LinearLayout>
@@ -161,7 +159,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Client Email Id:"
+                    android:text="ClientId:"
                     android:textStyle="bold"
                     />
                 <TextView
