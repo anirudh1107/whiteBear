@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">WhiteBear</string>
+
+    <string-array name="event_type">
+        <item >None</item>
+        <item>Birthday</item>
+        <item>marriage</item>
+        <item>destination wedding</item>
+        <item>office function</item>
+    </string-array>
+
+    <string-array name="package_type">
+        <item>STANDARD</item>
+        <item>SILVER</item>
+        <item>GOLD</item>
+        <item>PLATINUM</item>
+    </string-array>
+
+
 </resources>

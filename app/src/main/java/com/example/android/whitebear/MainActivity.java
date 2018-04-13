@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         getMenuInflater().inflate(R.menu.home_page_menu,menu);
+        return true;
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mItemSelected=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

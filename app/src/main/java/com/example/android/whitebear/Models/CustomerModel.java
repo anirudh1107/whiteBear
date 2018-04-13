@@ -7,12 +7,15 @@ package com.example.android.whitebear.Models;
 public class CustomerModel {
     private String cusId;
     private String name;
-    private long phone;
+    private String phone;
     private String address;
     private String eventId;
     private String emailId;
 
-    public CustomerModel(String cusId, String name, long phone, String address, String eventId, String emailId) {
+    public CustomerModel() {
+    }
+
+    public CustomerModel(String cusId, String name, String phone, String address, String eventId, String emailId) {
         this.cusId = cusId;
         this.name = name;
         this.phone = phone;
@@ -29,9 +32,6 @@ public class CustomerModel {
         return name;
     }
 
-    public long getPhone() {
-        return phone;
-    }
 
     public String getAddress() {
         return address;
@@ -49,9 +49,6 @@ public class CustomerModel {
         this.name = name;
     }
 
-    public void setPhone(long phone) {
-        this.phone = phone;
-    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -67,5 +64,13 @@ public class CustomerModel {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
