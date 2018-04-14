@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="home" />
+    <item
+        android:id="@+id/bottom_cust"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="customer" />
 
-    <item android:title="customer" android:id="@+id/bottom_cust" android:icon="@drawable/ic_people_black_24dp"/>
+    <item
+        android:id="@+id/bottom_shedule"
+        android:icon="@drawable/ic_event_black_24dp"
+        android:title="schedule" />
 
-    <item android:title="schedule" android:id="@+id/bottom_shedule" android:icon="@drawable/ic_event_black_24dp"/>
+    <item
+        android:id="@+id/bottom_feedback"
+        android:icon="@drawable/ic_done_black_24dp"
+        android:title="feedback" />
 
-    <item android:title="feedback" android:id="@+id/bottom_feedback" android:icon="@drawable/ic_done_black_24dp"/>
-
-    <item android:title="contact us" android:id="@+id/bottom_contact" android:icon="@drawable/ic_headset_mic_black_24dp"/>
+    <item
+        android:id="@+id/bottom_contact"
+        android:icon="@drawable/ic_headset_mic_black_24dp"
+        android:title="contact us" />
 
 </menu>
