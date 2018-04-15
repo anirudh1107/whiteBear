@@ -17,6 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.whitebear.Models.customIdModel;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -50,6 +54,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
     private int guests;
     private Button submit;
     private DatabaseReference ref;
+    private DatabaseReference customer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -249,7 +254,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(this,"Please Select veg or non veg food type",Toast.LENGTH_SHORT).show();
             else
             {
-
+                customer=FirebaseDatabase.getInstance().getReference().child("eventId");
                 ref= FirebaseDatabase.getInstance().getReference().child("events").push();
                 ref.child("cusId").setValue(cusId.getText().toString());
                 ref.child("eventType").setValue(type.getSelectedItem().toString());
@@ -265,6 +270,40 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 ref.child("pack").setValue(pack.getSelectedItem().toString());
                 ref.child("celeb").setValue(preceleb);
                 ref.child("total").setValue(String.valueOf(estimate*guests*multi));
+
+                customer.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                        if(type.getSelectedItem().toString().equalsIgnoreCase(dataSnapshot.getKey().toString()))
+                        {
+                            customIdModel id=dataSnapshot.getValue(customIdModel.class);
+                            int id1=id.getSecond()+1;
+                            customer.child(dataSnapshot.getKey()).child("second").setValue(id1);
+                            ref.child("eventId").setValue(id.getFirst()+id1);
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 startActivity(new Intent(this,MainActivity.class));
                 finish();

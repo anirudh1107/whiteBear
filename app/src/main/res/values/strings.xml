@@ -3,7 +3,7 @@
 
     <string-array name="event_type">
         <item >None</item>
-        <item>Birthday</item>
+        <item>birthday</item>
         <item>marriage</item>
         <item>destination wedding</item>
         <item>office function</item>

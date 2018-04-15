@@ -1,10 +1,10 @@
 package com.example.android.whitebear.Models;
 
 /**
- * Created by dellpc on 3/19/2018.
+ * Created by dellpc on 4/15/2018.
  */
 
-public class EventsModel {
+public class FeedbackModel {
 
     private boolean celeb;
     private String cusId;
@@ -20,10 +20,10 @@ public class EventsModel {
     private String key;
     private String eventId;
 
-    public EventsModel() {
+    public FeedbackModel() {
     }
 
-    public EventsModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId) {
+    public FeedbackModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId) {
         this.celeb = celeb;
         this.cusId = cusId;
         this.day = day;

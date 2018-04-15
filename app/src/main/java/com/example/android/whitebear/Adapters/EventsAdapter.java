@@ -38,7 +38,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
     public void onBindViewHolder(final EventsAdapter.Event_View_Holder holder, int position) {
         EventsModel current=list.get(position);
         holder.cusId.setText(current.getCusId());
-        holder.eventId.setText(current.getKey());
+        holder.eventId.setText(current.getEventId());
         holder.eventType.setText(current.getEventType());
         holder.eventVenue.setText(current.getVenue());
         holder.guestCount.setText(current.getGuestN());

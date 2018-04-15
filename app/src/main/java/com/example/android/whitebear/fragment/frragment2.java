@@ -57,50 +57,53 @@ public class frragment2 extends Fragment implements View.OnClickListener {
         scheduleRecycle.setAdapter(adapter);
 
 
-        ref.addChildEventListener(new ChildEventListener() {
+        timeline.setOnDateSelectedListener(new DatePickerTimeline.OnDateSelectedListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDateSelected(int year, int month, int day, int index) {
 
-                newEvent=dataSnapshot.getValue(EventsModel.class);
-                newEvent.setKey(dataSnapshot.getKey().toString());
-
-                timeline.setOnDateSelectedListener(new DatePickerTimeline.OnDateSelectedListener() {
+                final int day1=day;
+                final int month1=month;
+                final int year1=year;
+                list.removeAll(list);
+                ref.addChildEventListener(new ChildEventListener() {
                     @Override
-                    public void onDateSelected(int year, int month, int day, int index) {
-                        list.removeAll(list);
-                        if(Integer.parseInt(newEvent.getDay())==day && Integer.parseInt(newEvent.getMonth())==month && Integer.parseInt(newEvent.getYear())==year )
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                        newEvent=dataSnapshot.getValue(EventsModel.class);
+                        newEvent.setKey(dataSnapshot.getKey().toString());
+
+                        if(Integer.parseInt(newEvent.getDay())==day1 && Integer.parseInt(newEvent.getMonth())==month1&& Integer.parseInt(newEvent.getYear())==year1 )
                         {
                             list.add(newEvent);
                             adapter.notifyDataSetChanged();
                         }
 
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
-
-
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
             }
         });
+
 
 
         return view;
