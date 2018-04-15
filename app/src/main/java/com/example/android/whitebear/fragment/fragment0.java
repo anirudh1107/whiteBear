@@ -32,44 +32,69 @@ public class fragment0 extends android.app.Fragment {
     private ViewPager imageViewPager;
     private SwipeImageAdapter adapter;
     private CircleIndicator circleIndicator;
-    private static int currentPage;
+    private static int currentPage=0;
     private RecyclerView albumRecyclerView;
+    int[] images = {R.drawable.agra,R.drawable.concert1,R.drawable.food1,R.drawable.bday3};
+    private static int currpage=0;
+    private static int numpage=0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_fragment0, container, false);
         //code for sliding image view pager
         imageViewPager = view.findViewById(R.id.image_view_pager);
-        adapter = new SwipeImageAdapter(getContext());
+        adapter = new SwipeImageAdapter(getContext(), images);
         imageViewPager.setAdapter(adapter);
         circleIndicator = view.findViewById(R.id.circleIndicator);
         circleIndicator.setViewPager(imageViewPager);
 
         //code for Recycler view as grid album
-        List<OurOffers> list=new ArrayList<>();
-        list.add(new OurOffers("Wedding",7,R.drawable.agra));
-        list.add(new OurOffers("Concerts",5,R.drawable.concert1));
-        list.add(new OurOffers("Corporate Events",10,R.drawable.bday1));
-        list.add(new OurOffers("Multi National Cuisine",14,R.drawable.food1));
-        list.add(new OurOffers("Birthday Celebrations",10,R.drawable.cake2));
-        albumRecyclerView=view.findViewById(R.id.home_album_recycler_view);
-        albumRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        albumRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2,dpToPx(10),true));
+        List<OurOffers> list = new ArrayList<>();
+        list.add(new OurOffers("Wedding", 7, R.drawable.agra));
+        list.add(new OurOffers("Concerts", 5, R.drawable.concert1));
+        list.add(new OurOffers("Corporate Events", 10, R.drawable.bday1));
+        list.add(new OurOffers("Multi National Cuisine", 14, R.drawable.food1));
+        list.add(new OurOffers("Birthday Celebrations", 10, R.drawable.cake2));
+        albumRecyclerView = view.findViewById(R.id.home_album_recycler_view);
+        albumRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        albumRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         albumRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        HomeAlbumAdapter adapter=new HomeAlbumAdapter(getContext(),list);
-        albumRecyclerView.setAdapter(adapter);
+        HomeAlbumAdapter homeAlbumAdapter = new HomeAlbumAdapter(getContext(), list);
+        albumRecyclerView.setAdapter(homeAlbumAdapter);
+
+        /*new code for swipe image
+        imageViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == imageViewPager.SCROLL_STATE_IDLE) {
+                    int pagecount = images.length;
+                    if (currentPage == 0) {
+                        imageViewPager.setCurrentItem(numpage - 1, false);
+                    } else if (currentPage == pagecount - 1) {
+                        imageViewPager.setCurrentItem(0, false);
+                    }
+                }
+            }
+        });
+        */
 
 
+        numpage=images.length;
 
-
-
-
-
-
-        // Auto start of viewpager
+        //Auto start of viewpager(old code)
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
-                if (currentPage == 4) {
+                if (currentPage == numpage) {
                     currentPage = 0;
                 }
                 imageViewPager.setCurrentItem(currentPage++, true);
@@ -84,6 +109,7 @@ public class fragment0 extends android.app.Fragment {
         }, 2500, 2500);
         return view;
     }
+
 
 
     //recycler view item decoration

@@ -12,10 +12,11 @@ import android.widget.ImageView;
 import com.example.android.whitebear.R;
 
 public class SwipeImageAdapter extends PagerAdapter {
-    int[] images = {R.drawable.agra,R.drawable.concert1,R.drawable.food1,R.drawable.bday3};
+  private int[] images;
     private Context context;
     private LayoutInflater layoutInflater;
-    public SwipeImageAdapter(Context context){
+    public SwipeImageAdapter(Context context,int[] images){
+        this.images=images;
         this.context=context;
 
     }
