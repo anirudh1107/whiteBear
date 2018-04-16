@@ -315,6 +315,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
 
     void display()
     {
+
         updateDisplay.setText(String.valueOf(estimate*guests*multi));
     }
 

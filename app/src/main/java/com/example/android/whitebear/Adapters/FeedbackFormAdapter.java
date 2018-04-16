@@ -1,6 +1,7 @@
 package com.example.android.whitebear.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,9 @@ public class FeedbackFormAdapter extends Adapter<FeedbackFormAdapter.myViewHolde
             @Override
             public void onClick(View view) {
                 holder1.sad.setBackgroundColor(context.getResources().getColor(R.color.green));
+                holder1.normal.setBackgroundColor(Color.TRANSPARENT);
+                holder1.happy.setBackgroundColor(Color.TRANSPARENT);
+                holder1.aag.setBackgroundColor(Color.TRANSPARENT);
                 if(current.getTitleid()=="Cuisine")
                     FeedBackForm.setCuisine(3);
                 else if(current.getTitleid()=="Decorations")
@@ -64,6 +68,9 @@ public class FeedbackFormAdapter extends Adapter<FeedbackFormAdapter.myViewHolde
             @Override
             public void onClick(View view) {
                 holder1.normal.setBackgroundColor(context.getResources().getColor(R.color.green));
+                holder1.sad.setBackgroundColor(Color.TRANSPARENT);
+                holder1.happy.setBackgroundColor(Color.TRANSPARENT);
+                holder1.aag.setBackgroundColor(Color.TRANSPARENT);
                 if(current.getTitleid()=="Cuisine")
                     FeedBackForm.setCuisine(5);
                 else if(current.getTitleid()=="Decorations")
@@ -77,6 +84,9 @@ public class FeedbackFormAdapter extends Adapter<FeedbackFormAdapter.myViewHolde
             @Override
             public void onClick(View view) {
                 holder1.happy.setBackgroundColor(context.getResources().getColor(R.color.green));
+                holder1.normal.setBackgroundColor(Color.TRANSPARENT);
+                holder1.sad.setBackgroundColor(Color.TRANSPARENT);
+                holder1.aag.setBackgroundColor(Color.TRANSPARENT);
                 if(current.getTitleid()=="Cuisine")
                     FeedBackForm.setCuisine(8);
                 else if(current.getTitleid()=="Decorations")
@@ -90,6 +100,9 @@ public class FeedbackFormAdapter extends Adapter<FeedbackFormAdapter.myViewHolde
             @Override
             public void onClick(View view) {
                 holder1.aag.setBackgroundColor(context.getResources().getColor(R.color.green));
+                holder1.normal.setBackgroundColor(Color.TRANSPARENT);
+                holder1.happy.setBackgroundColor(Color.TRANSPARENT);
+                holder1.sad.setBackgroundColor(Color.TRANSPARENT);
                 if(current.getTitleid()=="Cuisine")
                     FeedBackForm.setCuisine(10);
                 else if(current.getTitleid()=="Decorations")
