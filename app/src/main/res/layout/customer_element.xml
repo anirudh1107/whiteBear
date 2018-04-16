@@ -86,7 +86,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Client Phome:"
+                        android:text="Client Phone:"
+                        android:textStyle="bold"
                         />
                     <TextView
                         android:id="@+id/customer_phone"
@@ -99,6 +100,11 @@
 
             </LinearLayout>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_expand_more_black_24dp"
+            android:id="@+id/expansion"/>
 
         <LinearLayout
             android:id="@+id/customer_hide_view"
