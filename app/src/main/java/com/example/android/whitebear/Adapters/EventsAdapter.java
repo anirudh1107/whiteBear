@@ -1,6 +1,7 @@
 package com.example.android.whitebear.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.android.whitebear.Models.EventsModel;
 import com.example.android.whitebear.R;
+import com.example.android.whitebear.eventDetail;
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
 
     @Override
     public void onBindViewHolder(final EventsAdapter.Event_View_Holder holder, int position) {
-        EventsModel current=list.get(position);
+        final EventsModel current=list.get(position);
         holder.cusId.setText(current.getCusId());
         holder.eventId.setText(current.getEventId());
         holder.eventType.setText(current.getEventType());
@@ -46,32 +48,22 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
             holder.cuisineType.setText("Non - Veg");
        else
            holder.cuisineType.setText("Veg");
-        holder.eventHiddenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.eventHiddenView.getVisibility()==View.VISIBLE){
-                    holder.eventHiddenView.setVisibility(View.GONE);
-                    holder.expansion.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                }
-                else if (holder.eventHiddenView.getVisibility()==View.GONE){
-                    holder.eventHiddenView.setVisibility(View.VISIBLE);
-                    holder.expansion.setImageResource(R.drawable.ic_expand_less_black_24dp);
-                }
-            }
-        });
-        holder.expansion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.eventHiddenView.getVisibility()==View.VISIBLE){
-                    holder.eventHiddenView.setVisibility(View.GONE);
-                    holder.expansion.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                }
-                else if(holder.eventHiddenView.getVisibility()==View.GONE){
-                    holder.eventHiddenView.setVisibility(View.VISIBLE);
-                    holder.expansion.setImageResource(R.drawable.ic_expand_less_black_24dp);
-                }
-            }
-        });
+
+       holder.eventHiddenButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               Intent i=new Intent(context,eventDetail.class);
+               i.putExtra("cusId",current.getCusId());
+               i.putExtra("eventId",current.getEventId());
+               i.putExtra("eventType",current.getEventType());
+               i.putExtra("address",current.getVenue());
+               i.putExtra("pack",current.getPack());
+               i.putExtra("guests",current.getGuestN());
+               i.putExtra("nonveg",current.isNonVeg());
+               context.startActivity(i);
+           }
+       });
 
     }
 

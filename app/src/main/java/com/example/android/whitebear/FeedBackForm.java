@@ -68,6 +68,7 @@ public class FeedBackForm extends AppCompatActivity implements View.OnClickListe
 
     public static void setCuisine(int rating)
     {
+
         cuisine=rating;
     }
 
