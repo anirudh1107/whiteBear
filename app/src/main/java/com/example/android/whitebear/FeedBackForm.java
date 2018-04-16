@@ -31,6 +31,8 @@ public class FeedBackForm extends AppCompatActivity implements View.OnClickListe
     private String customerId;
     private DatabaseReference ref;
     private EditText feedbackText;
+    private DatabaseReference removal;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class FeedBackForm extends AppCompatActivity implements View.OnClickListe
         Bundle extra=getIntent().getExtras();
         eventId=extra.getString("EventId");
         customerId=extra.getString("CustomerId");
+        key=extra.getString("key");
         recyclerView=findViewById(R.id.feedback_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter=new FeedbackFormAdapter(this,data);
@@ -77,6 +80,7 @@ public class FeedBackForm extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         ref= FirebaseDatabase.getInstance().getReference().child("FeedBack").push();
+        removal=FirebaseDatabase.getInstance().getReference().child("events").child(key);
         ref.child("cusId").setValue(customerId);
         ref.child("eventId").setValue(eventId);
         ref.child("decoration").setValue(String.valueOf(deco));
@@ -90,6 +94,7 @@ public class FeedBackForm extends AppCompatActivity implements View.OnClickListe
             ref.child("feedbacktext").setValue("");
 
 
+        removal.removeValue();
         startActivity(new Intent(this,MainActivity.class));
         finish();
 

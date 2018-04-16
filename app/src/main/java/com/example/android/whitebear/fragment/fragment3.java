@@ -55,6 +55,7 @@ public class fragment3 extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 FeedbackModel event=dataSnapshot.getValue(FeedbackModel.class);
+                event.setKey(dataSnapshot.getKey());
                 if(Integer.parseInt(event.getDay())<day && Integer.parseInt(event.getMonth())<=month && Integer.parseInt(event.getYear())<=year)
                 {
                     list.add(event);

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.whitebear.R;
@@ -24,7 +25,7 @@ public class fragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.layout_fragment4,container,false);
 
-        ImageButton facebookButton = view.findViewById(R.id.fb);
+        ImageView facebookButton = view.findViewById(R.id.fb);
         facebookButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com"));
@@ -32,7 +33,7 @@ public class fragment4 extends Fragment {
 
             }
         });
-        ImageButton instaButton = view.findViewById(R.id.insta);
+        ImageView instaButton = view.findViewById(R.id.insta);
         instaButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com"));
@@ -40,7 +41,7 @@ public class fragment4 extends Fragment {
 
             }
         });
-        ImageButton twitterButton = view.findViewById(R.id.twitter);
+        ImageView twitterButton = view.findViewById(R.id.twitter);
         twitterButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.twitter.com"));

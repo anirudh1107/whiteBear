@@ -46,6 +46,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 Intent i=new Intent(context,FeedBackForm.class);
                 i.putExtra("CustomerId",current.getCusId());
                 i.putExtra("EventId",current.getEventId());
+                i.putExtra("key",current.getKey());
                 context.startActivity(i);
             }
         });
