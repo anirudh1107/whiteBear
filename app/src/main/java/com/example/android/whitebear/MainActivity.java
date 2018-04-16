@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+        //toolbar.setTitle("White Bear");
 
         navigationView=findViewById(R.id.main_bottomnav);
         navigationView.setOnNavigationItemSelectedListener(mItemSelected);

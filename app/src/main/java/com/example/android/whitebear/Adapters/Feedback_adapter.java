@@ -1,7 +1,6 @@
 package com.example.android.whitebear.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.android.whitebear.FeedbackActivity;
 import com.example.android.whitebear.Models.FeedbackModel;
 import com.example.android.whitebear.R;
 
@@ -18,7 +16,7 @@ import java.util.List;
 public class Feedback_adapter extends RecyclerView.Adapter<Feedback_adapter.FeedbackViewHolder> {
     private LayoutInflater inflater;
     private Context context;
-    private ClickListener clickListener;
+
     private List<FeedbackModel> list;
     public Feedback_adapter(Context context,List<FeedbackModel> list){
         this.context=context;
@@ -37,19 +35,10 @@ public class Feedback_adapter extends RecyclerView.Adapter<Feedback_adapter.Feed
         FeedbackModel current=list.get(position);
         holder.eventId.setText(current.getEventId());
         holder.clientId.setText(current.getClientId());
-        holder.main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.startActivity(new Intent(context,FeedbackActivity.class));
-            }
-        });
-
 
 
     }
-    public void setClickListener(ClickListener clickListener){
-        this.clickListener=clickListener;
-    }
+
 
     @Override
     public int getItemCount() {
@@ -70,8 +59,5 @@ public class Feedback_adapter extends RecyclerView.Adapter<Feedback_adapter.Feed
 
 
     }
-    public interface ClickListener{
-        public void itemClicked(View view,int position);
 
-    }
 }

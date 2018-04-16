@@ -1,6 +1,5 @@
 package com.example.android.whitebear.fragment;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,13 +20,9 @@ import com.example.android.whitebear.Models.CustomerModel;
 import com.example.android.whitebear.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dellpc on 3/17/2018.
@@ -58,7 +54,7 @@ public class fragment1 extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<CustomerModel,CustomerViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CustomerViewHolder holder, int position, @NonNull CustomerModel model) {
+            protected void onBindViewHolder(@NonNull final CustomerViewHolder holder, int position, @NonNull CustomerModel model) {
 
                 final CustomerViewHolder holder2=holder;
                 holder.cusId.setText(model.getCusId());
@@ -74,13 +70,29 @@ public class fragment1 extends Fragment {
                         if (holder2.hidden.getVisibility()==View.VISIBLE)
                         {
                             holder2.hidden.setVisibility(View.GONE);
+                            holder.expansion.setImageResource(R.drawable.ic_expand_more_black_24dp);
                         }
                         else if(holder2.hidden.getVisibility()==View.GONE)
                         {
                             holder2.hidden.setVisibility(View.VISIBLE);
+                            holder.expansion.setImageResource(R.drawable.ic_expand_less_black_24dp);
                         }
                     }
                 });
+                holder.expansion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(holder2.hidden.getVisibility()==View.VISIBLE){
+                            holder2.hidden.setVisibility(View.GONE);
+                            holder.expansion.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                        }
+                        else if (holder2.hidden.getVisibility()==View.GONE){
+                            holder2.hidden.setVisibility(View.VISIBLE);
+                            holder.expansion.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                        }
+                    }
+                });
+
             }
 
             @Override
@@ -116,6 +128,7 @@ public class fragment1 extends Fragment {
         public TextView emailId;
         public LinearLayout hidden;
         public LinearLayout hiddenButton;
+        public ImageView expansion;
         public CustomerViewHolder(View itemView) {
             super(itemView);
             cusId=itemView.findViewById(R.id.customer_cus_id);
@@ -126,6 +139,7 @@ public class fragment1 extends Fragment {
             emailId=itemView.findViewById(R.id.customer_email_id);
             hidden=itemView.findViewById(R.id.customer_hide_view);
             hiddenButton=itemView.findViewById(R.id.customer_hidden_button);
+            expansion=itemView.findViewById(R.id.expansion);
         }
     }
 }
