@@ -43,6 +43,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
     private Spinner pack;
     private RadioGroup food;
     private RadioGroup celebrity;
+    private RadioButton celebrityYes;
+    private RadioButton celebrityNo;
     private boolean preceleb;
     private int prefood;
     private TextInputLayout cusInWrapper;
@@ -165,6 +167,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
         submit=findViewById(R.id.event_add_submit);
         cusId=findViewById(R.id.event_cus_id);
         venue=findViewById(R.id.event_add_venue);
+        celebrityYes=findViewById(R.id.event_add_YES);
+        celebrityNo=findViewById(R.id.event_add_NO);
 
         updateDisplay=findViewById(R.id.add_event_estimate);
         c=Calendar.getInstance();
@@ -212,7 +216,11 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 else if(i==2)
                     multi=3;
                 else
+                {
                     multi=4;
+                    celebrityYes.setClickable(true);
+                    celebrityNo.setClickable(true);
+                }
 
                 display();
             }
@@ -252,6 +260,10 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(this,"Please enter venue field",Toast.LENGTH_SHORT).show();
             else if(prefood==0)
                 Toast.makeText(this,"Please Select veg or non veg food type",Toast.LENGTH_SHORT).show();
+            else if(Integer.parseInt(mMonth)==month && Integer.parseInt(mDay)<day)
+                Toast.makeText(this,"Please enter valid date",Toast.LENGTH_SHORT).show();
+            else if(Integer.parseInt(mMonth)<month)
+                Toast.makeText(this,"Please enter valid date",Toast.LENGTH_SHORT).show();
             else
             {
                 customer=FirebaseDatabase.getInstance().getReference().child("eventId");
@@ -279,8 +291,9 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                         {
                             customIdModel id=dataSnapshot.getValue(customIdModel.class);
                             int id1=id.getSecond()+1;
+                            ref.child("eventId").setValue(""+id.getFirst()+id1);
                             customer.child(dataSnapshot.getKey()).child("second").setValue(id1);
-                            ref.child("eventId").setValue(id.getFirst()+id1);
+
                         }
                     }
 
