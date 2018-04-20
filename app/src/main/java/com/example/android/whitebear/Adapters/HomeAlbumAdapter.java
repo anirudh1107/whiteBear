@@ -1,6 +1,7 @@
 package com.example.android.whitebear.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.android.whitebear.HomeCategory;
 import com.example.android.whitebear.Models.OurOffers;
 import com.example.android.whitebear.R;
 
@@ -29,12 +31,22 @@ public class HomeAlbumAdapter extends RecyclerView.Adapter<HomeAlbumAdapter.Home
     }
 
     @Override
-    public void onBindViewHolder(HomeAlbumViewHolder holder, int position) {
+    public void onBindViewHolder(HomeAlbumViewHolder holder, final int position) {
         OurOffers current=list.get(position);
         holder.offerName.setText(current.getOfferName());
         holder.offerCount.setText(current.getOfferCount()+"options");
         holder.thumbnail.setImageResource(current.getThumbnail());
 
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i=new Intent(context, HomeCategory.class);
+                i.putExtra("position",position);
+                context.startActivity(i);
+
+            }
+        });
         //loading album cover using Glide Library
         Glide.with(context).load(current.getThumbnail()).into(holder.thumbnail);
 

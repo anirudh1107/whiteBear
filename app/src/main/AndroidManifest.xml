@@ -17,9 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddCustomer" />
-        <activity android:name=".AddEvent"/>
-        <activity android:name=".FeedBackForm"/>
-        <activity android:name=".eventDetail"/>
+        <activity android:name=".AddEvent" />
+        <activity android:name=".FeedBackForm" />
+        <activity android:name=".eventDetail" />
+        <activity android:name=".HomeCategory"></activity>
     </application>
 
 </manifest>

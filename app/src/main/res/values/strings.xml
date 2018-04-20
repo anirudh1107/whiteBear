@@ -2,7 +2,7 @@
     <string name="app_name">WhiteBear</string>
 
     <string-array name="event_type">
-        <item >None</item>
+        <item>None</item>
         <item>birthday</item>
         <item>marriage</item>
         <item>destination wedding</item>
