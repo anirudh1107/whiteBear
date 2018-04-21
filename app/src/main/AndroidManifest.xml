@@ -20,7 +20,8 @@
         <activity android:name=".AddEvent" />
         <activity android:name=".FeedBackForm" />
         <activity android:name=".eventDetail" />
-        <activity android:name=".HomeCategory"></activity>
+        <activity android:name=".HomeCategory" />
+        <activity android:name=".Otp"></activity>
     </application>
 
 </manifest>
