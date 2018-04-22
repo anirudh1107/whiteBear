@@ -15,16 +15,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth auth;
     private EditText user;
     private EditText password;
+
     private TextInputLayout user_wrapper;
     private TextInputLayout password_wrapper;
+
     private Button login;
     private TextView register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +39,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         user=findViewById(R.id.login_username);
         password=findViewById(R.id.login_password);
         user_wrapper=findViewById(R.id.login_username_wrapper);
-        user_wrapper.setHint("USERNAME");
+
+        user_wrapper.setHint("EmailId");
         password_wrapper=findViewById(R.id.login_password_wrapper);
         password_wrapper.setHint("PASSWORD");
+
         login=findViewById(R.id.login_login);
         register=findViewById(R.id.login_register);
 
@@ -59,6 +66,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                     if(task.isSuccessful())
                     {
+
                         startActivity(new Intent(Login.this,MainActivity.class));
                         finish();
                     }

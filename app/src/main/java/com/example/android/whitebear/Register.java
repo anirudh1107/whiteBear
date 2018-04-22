@@ -14,14 +14,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+    private EditText name;
+    private EditText phone;
     private TextInputLayout usernameWrapper;
     private TextInputLayout passwordWrapper;
+    private TextInputLayout name_wrapper;
+    private TextInputLayout phone_wrapper;
     private Button submit;
+    private DatabaseReference ref;
     FirebaseAuth auth;
 
     @Override
@@ -32,10 +39,16 @@ public class Register extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         username=findViewById(R.id.register_username);
         password=findViewById(R.id.register_password);
+        name=findViewById(R.id.register_name);
+        phone=findViewById(R.id.register_phone);
         usernameWrapper=findViewById(R.id.register_username_wrapper);
         usernameWrapper.setHint("USERNAME");
         passwordWrapper=findViewById(R.id.register_password_wrapper);
         passwordWrapper.setHint("PASSWORD");
+        name_wrapper=findViewById(R.id.register_name_wrapper);
+        name_wrapper.setHint("NAME");
+        phone_wrapper=findViewById(R.id.register_phone_wrapper);
+        phone_wrapper.setHint("PHONE");
 
         submit=findViewById(R.id.register_register);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +67,9 @@ public class Register extends AppCompatActivity {
 
                                         if(task.isSuccessful())
                                         {
+                                            ref= FirebaseDatabase.getInstance().getReference().child("employee").child(auth.getCurrentUser().getUid().toString());
+                                            ref.child("name").setValue(name.getText().toString());
+                                            ref.child("phone").setValue(phone.getText().toString());
                                             startActivity(new Intent(Register.this,MainActivity.class));
                                         }
                                     }
