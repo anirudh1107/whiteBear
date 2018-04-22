@@ -54,7 +54,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 i.putExtra("EventId",current.getEventId());
                 i.putExtra("key",current.getKey());
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setData(Uri.parse("sms:8565950269"));
+                sendIntent.setData(Uri.parse("sms:"+current.getPhone()));
                 context.startActivity(i);
                 sendIntent.putExtra("sms_body", "your OTP is "+o);
                 context.startActivity(sendIntent);

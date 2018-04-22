@@ -19,11 +19,12 @@ public class FeedbackModel {
     private String year;
     private String key;
     private String eventId;
+    private String phone;
 
     public FeedbackModel() {
     }
 
-    public FeedbackModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId) {
+    public FeedbackModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId,String phone) {
         this.celeb = celeb;
         this.cusId = cusId;
         this.day = day;
@@ -37,6 +38,15 @@ public class FeedbackModel {
         this.year = year;
         this.key = key;
         this.eventId = eventId;
+        this.phone=phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public boolean isCeleb() {

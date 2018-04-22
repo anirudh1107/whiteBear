@@ -14,6 +14,7 @@ import com.example.android.whitebear.fragment.fragment1;
 import com.example.android.whitebear.fragment.fragment3;
 import com.example.android.whitebear.fragment.fragment4;
 import com.example.android.whitebear.fragment.frragment2;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mainFrame;
     private FragmentManager manager;
     private BottomNavigationView navigationView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         //toolbar.setTitle("White Bear");
+        mAuth=FirebaseAuth.getInstance();
 
         navigationView=findViewById(R.id.main_bottomnav);
         navigationView.setOnNavigationItemSelectedListener(mItemSelected);

@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.whitebear.Models.CustomerModel;
 import com.example.android.whitebear.Models.customIdModel;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -51,12 +52,14 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
     private TextInputLayout venueWrapper;
     private TextView guestNo;
     private TextView dateDisplay;
+    private TextView AddPhone;
     private Button addGuests;
     private Button subGuests;
     private int guests;
     private Button submit;
     private DatabaseReference ref;
     private DatabaseReference customer;
+    private DatabaseReference currentcustomer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +105,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
         subGuests.setOnClickListener(this);
 
         submit.setOnClickListener(this);
+
+        AddPhone.setOnClickListener(this);
 
         celebrity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -169,6 +174,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
         venue=findViewById(R.id.event_add_venue);
         celebrityYes=findViewById(R.id.event_add_YES);
         celebrityNo=findViewById(R.id.event_add_NO);
+        AddPhone=findViewById(R.id.event_add_phone_add);
+        currentcustomer=FirebaseDatabase.getInstance().getReference().child("Users");
 
         updateDisplay=findViewById(R.id.add_event_estimate);
         c=Calendar.getInstance();
@@ -250,8 +257,11 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
 
         if(view.getId()==R.id.event_add_submit)
         {
+
             if(cusId.getText().toString().isEmpty())
                 Toast.makeText(this,"Please Enter CusId",Toast.LENGTH_SHORT).show();
+            else if(AddPhone.getText().toString().isEmpty())
+                Toast.makeText(this,"cusId wrong",Toast.LENGTH_SHORT).show();
             else if(mDay.isEmpty())
                 Toast.makeText(this,"Please Select the Date",Toast.LENGTH_SHORT).show();
             else if(estimate*guests*multi==0)
@@ -275,6 +285,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 ref.child("month").setValue(mMonth);
                 ref.child("year").setValue(mYear);
                 ref.child("guestN").setValue(String.valueOf(guests));
+                ref.child("phone").setValue(AddPhone.getText().toString());
                 if(prefood==1)
                     ref.child("nonVeg").setValue(false);
                 else if(prefood==2)
@@ -323,7 +334,44 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
             }
 
 
+
         }
+
+        else if(view.getId()==R.id.event_add_phone_add)
+            {
+
+
+                currentcustomer.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                        CustomerModel current=dataSnapshot.getValue(CustomerModel.class);
+                        if(current.getCusId().equalsIgnoreCase(cusId.getText().toString()))
+                            AddPhone.setText(current.getPhone());
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
     }
 
     void display()
