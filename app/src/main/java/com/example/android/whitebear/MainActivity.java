@@ -2,10 +2,12 @@ package com.example.android.whitebear;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        //toolbar.setTitle("White Bear");
 
         navigationView=findViewById(R.id.main_bottomnav);
         navigationView.setOnNavigationItemSelectedListener(mItemSelected);
@@ -42,6 +43,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_page_menu,menu);
+    return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.profile){
+            Intent intent=new Intent(this,ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mItemSelected=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

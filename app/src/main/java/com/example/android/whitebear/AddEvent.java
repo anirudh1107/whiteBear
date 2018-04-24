@@ -1,10 +1,15 @@
 package com.example.android.whitebear;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -23,8 +28,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -266,60 +269,9 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(this,"Please enter valid date",Toast.LENGTH_SHORT).show();
             else
             {
-                customer=FirebaseDatabase.getInstance().getReference().child("eventId");
-                ref= FirebaseDatabase.getInstance().getReference().child("events").push();
-                ref.child("cusId").setValue(cusId.getText().toString());
-                ref.child("eventType").setValue(type.getSelectedItem().toString());
-                ref.child("venue").setValue(venue.getText().toString());
-                ref.child("day").setValue(mDay);
-                ref.child("month").setValue(mMonth);
-                ref.child("year").setValue(mYear);
-                ref.child("guestN").setValue(String.valueOf(guests));
-                if(prefood==1)
-                    ref.child("nonVeg").setValue(false);
-                else if(prefood==2)
-                    ref.child("nonVeg").setValue(true);
-                ref.child("pack").setValue(pack.getSelectedItem().toString());
-                ref.child("celeb").setValue(preceleb);
-                ref.child("total").setValue(String.valueOf(estimate*guests*multi));
+                SubmitDialogEvent submitEventAlert=new SubmitDialogEvent(customer,ref);
+                submitEventAlert.show(getFragmentManager(),"SubmitEventAlert");
 
-                customer.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                        if(type.getSelectedItem().toString().equalsIgnoreCase(dataSnapshot.getKey().toString()))
-                        {
-                            customIdModel id=dataSnapshot.getValue(customIdModel.class);
-                            int id1=id.getSecond()+1;
-                            ref.child("eventId").setValue(""+id.getFirst()+id1);
-                            customer.child(dataSnapshot.getKey()).child("second").setValue(id1);
-
-                        }
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                startActivity(new Intent(this,MainActivity.class));
-                finish();
             }
 
 
@@ -341,5 +293,92 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
     public void dateDisplay()
     {
         dateDisplay.setText(""+mDay+"\\"+mMonth+"\\"+mYear);
+    }
+
+    @SuppressLint("ValidFragment")
+    private class SubmitDialogEvent extends DialogFragment {
+        private DatabaseReference customer;
+        private DatabaseReference ref;
+
+        public SubmitDialogEvent(DatabaseReference customer, DatabaseReference ref) {
+            this.customer=customer;
+            this.ref=ref;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+            builder.setTitle("SUBMIT");
+            builder.setMessage("Are you sure you want to add event");
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(getActivity(),"Event  not added",Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    customer=FirebaseDatabase.getInstance().getReference().child("eventId");
+                    ref= FirebaseDatabase.getInstance().getReference().child("events").push();
+                    ref.child("cusId").setValue(cusId.getText().toString());
+                    ref.child("eventType").setValue(type.getSelectedItem().toString());
+                    ref.child("venue").setValue(venue.getText().toString());
+                    ref.child("day").setValue(mDay);
+                    ref.child("month").setValue(mMonth);
+                    ref.child("year").setValue(mYear);
+                    ref.child("guestN").setValue(String.valueOf(guests));
+                    if(prefood==1)
+                        ref.child("nonVeg").setValue(false);
+                    else if(prefood==2)
+                        ref.child("nonVeg").setValue(true);
+                    ref.child("pack").setValue(pack.getSelectedItem().toString());
+                    ref.child("celeb").setValue(preceleb);
+                    ref.child("total").setValue(String.valueOf(estimate*guests*multi));
+
+                    customer.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                            if(type.getSelectedItem().toString().equalsIgnoreCase(dataSnapshot.getKey().toString()))
+                            {
+                                customIdModel id=dataSnapshot.getValue(customIdModel.class);
+                                int id1=id.getSecond()+1;
+                                ref.child("eventId").setValue(""+id.getFirst()+id1);
+                                customer.child(dataSnapshot.getKey()).child("second").setValue(id1);
+
+                            }
+                        }
+
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    startActivity(new Intent(AddEvent.this,MainActivity.class));
+                    finish();
+                }
+            });
+            Dialog dialog=builder.create();
+            return dialog;
+        }
     }
 }

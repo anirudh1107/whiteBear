@@ -22,6 +22,7 @@
         <activity android:name=".eventDetail" />
         <activity android:name=".HomeCategory" />
         <activity android:name=".Otp"></activity>
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
