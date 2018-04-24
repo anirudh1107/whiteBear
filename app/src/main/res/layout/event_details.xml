@@ -234,7 +234,7 @@
                         android:layout_weight="1"
                         android:textStyle="bold"
                         android:textColor="#000"
-                        android:text="Nom-Veg"
+                        android:text="Non-Veg"
                         />
                     <TextView
                         android:id="@+id/event_detail_Nonveg"

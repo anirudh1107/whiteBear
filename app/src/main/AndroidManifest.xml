@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Adapters.PayAmount"></activity>
+        <activity android:name=".Otp"></activity>
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

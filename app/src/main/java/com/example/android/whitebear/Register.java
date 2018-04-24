@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
 
                                         if(task.isSuccessful())
                                         {
-                                            ref= FirebaseDatabase.getInstance().getReference().child(employeeeId.getText().toString()).child(auth.getCurrentUser().getUid().toString());
+                                            ref= FirebaseDatabase.getInstance().getReference().child("employee").child(employeeeId.getText().toString());
                                             ref.child("name").setValue(name.getText().toString());
                                             ref.child("phone").setValue(phone.getText().toString());
                                             ref.child("EmpId").setValue(employeeeId.getText().toString());
