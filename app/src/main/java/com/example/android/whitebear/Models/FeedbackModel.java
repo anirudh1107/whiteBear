@@ -20,11 +20,12 @@ public class FeedbackModel {
     private String key;
     private String eventId;
     private String phone;
+    private String adMoney;
 
     public FeedbackModel() {
     }
 
-    public FeedbackModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId,String phone) {
+    public FeedbackModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId,String phone,String adMoney) {
         this.celeb = celeb;
         this.cusId = cusId;
         this.day = day;
@@ -39,6 +40,7 @@ public class FeedbackModel {
         this.key = key;
         this.eventId = eventId;
         this.phone=phone;
+        this.adMoney=adMoney;
     }
 
     public String getPhone() {
@@ -151,5 +153,13 @@ public class FeedbackModel {
 
     public void setEventId(String eventId) {
         this.eventId = eventId;
+    }
+
+    public String getAdMoney() {
+        return adMoney;
+    }
+
+    public void setAdMoney(String adMoney) {
+        this.adMoney = adMoney;
     }
 }

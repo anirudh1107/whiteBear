@@ -78,9 +78,10 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.github.lzyzsd.circleprogress.CircleProgress
+            android:id="@+id/feedback_element_progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="12dp"
             android:padding="2dp"
             android:src="@drawable/ic_check_circle_black_24dp" />

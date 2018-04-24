@@ -20,11 +20,12 @@ public class EventsModel {
     private String key;
     private String eventId;
     private String phone;
+    private String adMoney;
 
     public EventsModel() {
     }
 
-    public EventsModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId,String phone) {
+    public EventsModel(boolean celeb, String cusId, String day, String eventType, String guestN, String month, boolean nonVeg, String pack, String total, String venue, String year, String key, String eventId,String phone,String adMoney) {
         this.celeb = celeb;
         this.cusId = cusId;
         this.day = day;
@@ -39,6 +40,7 @@ public class EventsModel {
         this.key = key;
         this.eventId = eventId;
         this.phone=phone;
+        this.adMoney=adMoney;
     }
 
     public String getPhone() {
@@ -149,7 +151,17 @@ public class EventsModel {
         this.key = key;
     }
 
+    public String getAdMoney() {
+        return adMoney;
+    }
+
+    public void setAdMoney(String adMoney) {
+        this.adMoney = adMoney;
+    }
+
     public void setEventId(String eventId) {
         this.eventId = eventId;
+
+
     }
 }

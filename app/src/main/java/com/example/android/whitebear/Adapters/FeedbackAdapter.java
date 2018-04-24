@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.transition.CircularPropagation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.android.whitebear.FeedBackForm;
 import com.example.android.whitebear.Models.FeedbackModel;
 import com.example.android.whitebear.Otp;
 import com.example.android.whitebear.R;
+import com.github.lzyzsd.circleprogress.CircleProgress;
 
 import java.util.List;
 import java.util.Random;
@@ -61,7 +63,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             }
         });
 
-
+        holder.circleProgression.setProgress(100);
 
 
     }
@@ -74,11 +76,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         public TextView eventId;
         public TextView clientId;
         public LinearLayout main;
+        public CircleProgress circleProgression;
         public FeedbackViewHolder(View itemView) {
             super(itemView);
             eventId=itemView.findViewById(R.id.event_id);
             clientId=itemView.findViewById(R.id.client_id);
             main=itemView.findViewById(R.id.main);
+            circleProgression=itemView.findViewById(R.id.feedback_element_progress);
 
         }
 

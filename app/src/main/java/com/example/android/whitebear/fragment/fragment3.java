@@ -58,8 +58,12 @@ public class fragment3 extends Fragment {
                 event.setKey(dataSnapshot.getKey());
                 if(Integer.parseInt(event.getDay())<day && Integer.parseInt(event.getMonth())<=month && Integer.parseInt(event.getYear())<=year)
                 {
-                    list.add(event);
-                    adapter.notifyDataSetChanged();
+                    if(Integer.parseInt(event.getTotal())==Integer.parseInt(event.getAdMoney()))
+                    {
+                        list.add(event);
+                        adapter.notifyDataSetChanged();
+                    }
+
                 }
             }
 

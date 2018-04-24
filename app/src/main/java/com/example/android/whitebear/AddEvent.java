@@ -60,6 +60,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
     private DatabaseReference ref;
     private DatabaseReference customer;
     private DatabaseReference currentcustomer;
+    private EditText advanceMoney;
+    private TextInputLayout advanceMoneyWrapper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,6 +177,9 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
         celebrityYes=findViewById(R.id.event_add_YES);
         celebrityNo=findViewById(R.id.event_add_NO);
         AddPhone=findViewById(R.id.event_add_phone_add);
+        advanceMoney=findViewById(R.id.event_add_advance_amount);
+        advanceMoneyWrapper=findViewById(R.id.event_add_advance_wrapper);
+        advanceMoneyWrapper.setHint("Advance Money");
         currentcustomer=FirebaseDatabase.getInstance().getReference().child("Users");
 
         updateDisplay=findViewById(R.id.add_event_estimate);
@@ -194,13 +199,13 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 if (i==0)
                     estimate=0;
                 else if (i==1)
-                    estimate=25000;
+                    estimate=150;
                 else if(i==2)
-                    estimate=50000;
+                    estimate=350;
                 else if(i==3)
-                    estimate=100000;
+                    estimate=400;
                 else
-                    estimate=150000;
+                    estimate=250;
 
                 display();
             }
@@ -224,7 +229,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                     multi=3;
                 else
                 {
-                    multi=4;
+                    multi=3;
                     celebrityYes.setClickable(true);
                     celebrityNo.setClickable(true);
                 }
@@ -274,6 +279,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(this,"Please enter valid date",Toast.LENGTH_SHORT).show();
             else if(Integer.parseInt(mMonth)<month)
                 Toast.makeText(this,"Please enter valid date",Toast.LENGTH_SHORT).show();
+            else if(advanceMoney.getText().toString().isEmpty())
+                Toast.makeText(AddEvent.this,"Please fill the add event section",Toast.LENGTH_SHORT).show();
             else
             {
                 customer=FirebaseDatabase.getInstance().getReference().child("eventId");
@@ -293,12 +300,13 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener{
                 ref.child("pack").setValue(pack.getSelectedItem().toString());
                 ref.child("celeb").setValue(preceleb);
                 ref.child("total").setValue(String.valueOf(estimate*guests*multi));
+                ref.child("adMoney").setValue(advanceMoney.getText().toString());
 
                 customer.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                        if(type.getSelectedItem().toString().equalsIgnoreCase(dataSnapshot.getKey().toString()))
+                        if(type.getSelectedItem().toString().equalsIgnoreCase(dataSnapshot.getKey()))
                         {
                             customIdModel id=dataSnapshot.getValue(customIdModel.class);
                             int id1=id.getSecond()+1;

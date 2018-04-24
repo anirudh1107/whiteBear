@@ -9,24 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".AddCustomer" />
         <activity android:name=".AddEvent" />
         <activity android:name=".FeedBackForm" />
         <activity android:name=".eventDetail" />
         <activity android:name=".HomeCategory" />
         <activity android:name=".Otp" />
-        <activity android:name=".Login" >
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Adapters.PayAmount"></activity>
     </application>
 
 </manifest>

@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.Resource;
 import com.example.android.whitebear.Models.EventsModel;
 import com.example.android.whitebear.R;
 import com.example.android.whitebear.eventDetail;
+import com.github.lzyzsd.circleprogress.CircleProgress;
 
 import java.util.List;
 
@@ -41,15 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
         final EventsModel current=list.get(position);
         holder.cusId.setText(current.getCusId());
         holder.eventId.setText(current.getEventId());
-        holder.eventType.setText(current.getEventType());
-        holder.eventVenue.setText(current.getVenue());
-        holder.guestCount.setText(current.getGuestN());
-        if(current.isNonVeg())
-            holder.cuisineType.setText("Non - Veg");
-       else
-           holder.cuisineType.setText("Veg");
-
-       holder.eventHiddenButton.setOnClickListener(new View.OnClickListener() {
+       holder.EventDetail.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
 
@@ -64,6 +59,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
                context.startActivity(i);
            }
        });
+       double prog=(Double.parseDouble(current.getAdMoney())/Double.parseDouble(current.getTotal()))*100;
+        holder.circularProgress.setFinishedColor(R.color.green);
+       holder.circularProgress.setProgress(((int)prog));
+
+       holder.eventDetailGo.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent i=new Intent(context,PayAmount.class);
+               i.putExtra("total",current.getTotal());
+               i.putExtra("payed",current.getAdMoney());
+               i.putExtra("key",current.getKey());
+               context.startActivity(i);
+           }
+       });
 
     }
 
@@ -74,28 +83,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.Event_View
 
     public class Event_View_Holder extends RecyclerView.ViewHolder{
         public TextView cusId;
-        public TextView cusname;
         public TextView eventId;
-        public TextView eventType;
-        public TextView eventVenue;
-        public TextView guestCount;
-        public TextView cuisineType;
-        public LinearLayout eventHiddenView;
-        public LinearLayout eventHiddenButton;
-        public ImageView expansion;
+        public LinearLayout eventDetailGo;
+        public LinearLayout EventDetail;
+        public CircleProgress circularProgress;
+
 
         public Event_View_Holder(View itemView) {
             super(itemView);
             cusId=itemView.findViewById(R.id.customer_UID);
-            cusname=itemView.findViewById(R.id.customer_name);
             eventId=itemView.findViewById(R.id.event_id);
-            eventType=itemView.findViewById(R.id.event_type);
-            eventVenue=itemView.findViewById(R.id.event_venue);
-            guestCount=itemView.findViewById(R.id.guest_count);
-            cuisineType=itemView.findViewById(R.id.cuisine_type);
-            eventHiddenView=itemView.findViewById(R.id.event_hidden_view);
-            eventHiddenButton=itemView.findViewById(R.id.event_hidden_button);
-            expansion=itemView.findViewById(R.id.expansion);
+            eventDetailGo=itemView.findViewById(R.id.event_pay_button);
+            EventDetail=itemView.findViewById(R.id.event_detail_button);
+            circularProgress=itemView.findViewById(R.id.event_element_progress);
+
         }
     }
 }
