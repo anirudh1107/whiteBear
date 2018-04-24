@@ -50,10 +50,10 @@ public class fragment0 extends android.app.Fragment {
         //code for Recycler view as grid album
         List<OurOffers> list = new ArrayList<>();
         list.add(new OurOffers("Wedding", 7, R.drawable.agra));
-        list.add(new OurOffers("Concerts", 5, R.drawable.concert1));
+        list.add(new OurOffers("Indian Bands", 5, R.drawable.concert1));
         list.add(new OurOffers("Corporate Events", 10, R.drawable.bday1));
-        list.add(new OurOffers("Multi National Cuisine", 14, R.drawable.food1));
-        list.add(new OurOffers("Birthday Celebrations", 10, R.drawable.cake2));
+        list.add(new OurOffers("Pre Wedding", 14, R.drawable.food1));
+        list.add(new OurOffers("Indian celebrity", 10, R.drawable.celebs2));
         albumRecyclerView = view.findViewById(R.id.home_album_recycler_view);
         albumRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         albumRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));

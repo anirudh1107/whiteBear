@@ -28,6 +28,8 @@ public class Register extends AppCompatActivity {
     private TextInputLayout name_wrapper;
     private TextInputLayout phone_wrapper;
     private Button submit;
+    private TextInputLayout EmployeeidWrapper;
+    private EditText employeeeId;
     private DatabaseReference ref;
     FirebaseAuth auth;
 
@@ -49,6 +51,10 @@ public class Register extends AppCompatActivity {
         name_wrapper.setHint("NAME");
         phone_wrapper=findViewById(R.id.register_phone_wrapper);
         phone_wrapper.setHint("PHONE");
+        EmployeeidWrapper=findViewById(R.id.register_employee_wrapper);
+        EmployeeidWrapper.setHint("Employee Id");
+        employeeeId=findViewById(R.id.register_employee);
+
 
         submit=findViewById(R.id.register_register);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +73,12 @@ public class Register extends AppCompatActivity {
 
                                         if(task.isSuccessful())
                                         {
-                                            ref= FirebaseDatabase.getInstance().getReference().child("employee").child(auth.getCurrentUser().getUid().toString());
+                                            ref= FirebaseDatabase.getInstance().getReference().child(employeeeId.getText().toString()).child(auth.getCurrentUser().getUid().toString());
                                             ref.child("name").setValue(name.getText().toString());
                                             ref.child("phone").setValue(phone.getText().toString());
+                                            ref.child("EmpId").setValue(employeeeId.getText().toString());
                                             startActivity(new Intent(Register.this,MainActivity.class));
+                                            finish();
                                         }
                                     }
                                 });

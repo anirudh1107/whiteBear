@@ -37,29 +37,36 @@ public class HomeCategory extends AppCompatActivity implements View.OnClickListe
 
         arr=new ArrayList<>();
         ArrayList<CategoryModel> wedding=new ArrayList<>();
-        wedding.add(new CategoryModel(R.drawable.ic_check_circle_black_24dp,"Wedding1"));
-        wedding.add(new CategoryModel(R.drawable.ic_face_black_24dp,"Wedding2"));
-        wedding.add(new CategoryModel(R.drawable.ic_chevron_right_white_24dp,"wedding3"));
+        wedding.add(new CategoryModel(R.drawable.beachwedding,"Beach Wedding"));
+        wedding.add(new CategoryModel(R.drawable.destination,"Destination Wedding"));
+        wedding.add(new CategoryModel(R.drawable.temple,"Temple"));
+        wedding.add(new CategoryModel(R.drawable.royalwedding2,"Royal Wedding"));
 
         ArrayList<CategoryModel> Concerts=new ArrayList<>();
-        Concerts.add(new CategoryModel(R.drawable.ic_check_circle_black_24dp,"Concerts1"));
-        Concerts.add(new CategoryModel(R.drawable.ic_face_black_24dp,"Concerts2"));
-        Concerts.add(new CategoryModel(R.drawable.ic_chevron_right_white_24dp,"Concerts3"));
+        Concerts.add(new CategoryModel(R.drawable.lagori,"Laghori Band"));
+        Concerts.add(new CategoryModel(R.drawable.nucleya,"Nuclea"));
+        Concerts.add(new CategoryModel(R.drawable.americanauthors,"American Authors"));
+        Concerts.add(new CategoryModel(R.drawable.coldplay,"Coldplay"));
+        Concerts.add(new CategoryModel(R.drawable.imaginedragons,"Imagine Dragon"));
+        Concerts.add(new CategoryModel(R.drawable.metallica,"Metallica"));
 
         ArrayList<CategoryModel> CorporateEvents=new ArrayList<>();
-        CorporateEvents.add(new CategoryModel(R.drawable.ic_check_circle_black_24dp,"Corporate"));
-        CorporateEvents.add(new CategoryModel(R.drawable.ic_face_black_24dp,"Corporate2"));
-        CorporateEvents.add(new CategoryModel(R.drawable.ic_chevron_right_white_24dp,"Corporate3"));
+        CorporateEvents.add(new CategoryModel(R.drawable.award,"Awards"));
+        CorporateEvents.add(new CategoryModel(R.drawable.conference,"Conference"));
+        CorporateEvents.add(new CategoryModel(R.drawable.dealersinvestment,"Dealer Investment"));
+        CorporateEvents.add(new CategoryModel(R.drawable.fashion,"Fashin"));
+        CorporateEvents.add(new CategoryModel(R.drawable.productlaunch,"Product Launch"));
 
-        ArrayList<CategoryModel> MultiNationalCuisine=new ArrayList<>();
-        MultiNationalCuisine.add(new CategoryModel(R.drawable.ic_check_circle_black_24dp,"Wedding1"));
-        MultiNationalCuisine.add(new CategoryModel(R.drawable.ic_face_black_24dp,"Wedding2"));
-        MultiNationalCuisine.add(new CategoryModel(R.drawable.ic_chevron_right_white_24dp,"wedding3"));
+        ArrayList<CategoryModel> PreWedding=new ArrayList<>();
+        PreWedding.add(new CategoryModel(R.drawable.bachelor,"Bachelor Party"));
+        PreWedding.add(new CategoryModel(R.drawable.engagemet2,"Engagement"));
+        PreWedding.add(new CategoryModel(R.drawable.mehendi,"Mehendi"));
+        PreWedding.add(new CategoryModel(R.drawable.sngeet,"Sangeet"));
 
-        ArrayList<CategoryModel> BirthdayCelebration=new ArrayList<>();
-        BirthdayCelebration.add(new CategoryModel(R.drawable.ic_check_circle_black_24dp,"Wedding1"));
-        BirthdayCelebration.add(new CategoryModel(R.drawable.ic_face_black_24dp,"Wedding2"));
-        BirthdayCelebration.add(new CategoryModel(R.drawable.ic_chevron_right_white_24dp,"wedding3"));
+
+        ArrayList<CategoryModel> IndianCelebrity=new ArrayList<>();
+        IndianCelebrity.add(new CategoryModel(R.drawable.celebs,"Indian Celebrity"));
+
 
 
         Bundle extra=getIntent().getExtras();
@@ -69,8 +76,8 @@ public class HomeCategory extends AppCompatActivity implements View.OnClickListe
         arr.add(wedding);
         arr.add(Concerts);
         arr.add(CorporateEvents);
-        arr.add(MultiNationalCuisine);
-        arr.add(BirthdayCelebration);
+        arr.add(PreWedding);
+        arr.add(IndianCelebrity);
 
 
 
@@ -86,8 +93,6 @@ public class HomeCategory extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setInitialValue() {
-        tvName.setText("Abhishek Kumar");
-        tvEmail.setText("abhishek1706@hotmail.com");
 
     }
 
